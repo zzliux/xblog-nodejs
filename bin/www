@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+var app   = require('../app');
+var http  = require('http');
+var https = require('https');
+var fs    = require('fs');
+
+
+https.createServer({
+  key: fs.readFileSync('ssl/private.key'),
+  cert: fs.readFileSync('ssl/certificate.crt'),
+  ca: fs.readFileSync('ssl/ca_bundle.crt')
+},app).listen(443,function(){
+  console.log('https server has started');
+});
+
+
+/* 对http请求进行重定向到https */
+http.createServer(function(req, res){
+  res.writeHead(302, {'Location' :  'https://' + req.headers.host + req.url});
+  res.end();
+}).listen(80,function(){
+  console.log('http server has started');
+});

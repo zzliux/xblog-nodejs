@@ -1,0 +1,56 @@
+doctype html
+html
+  head
+    link(href='/plugins/bootstrap/3.3.5/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/plugins/font-awesome/4.6.1/css/font-awesome.min.css', rel='stylesheet')
+    link(href='/stylesheets/style.css', rel='stylesheet')
+    script(src='/plugins/jquery/2.2.3/jquery.min.js')
+    script(src='/plugins/bootstrap/3.3.5/js/bootstrap.min.js')
+    title 文章 - 后台管理
+  body
+    nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') zzliux's blog
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a(href='/article/9') About Me
+    .container-fluid
+      .col-sm-2
+        ul.list-group
+          a.list-group-item(href='/admin') 总览
+          a.list-group-item(href='/admin/article') 文章列表
+          a.list-group-item(href='/admin/article/edit') 撰写文章
+          a.list-group-item(href='/admin/upload') 上传图片
+          a.list-group-item(href='#') 栏目5
+      .panel.panel-default.col-sm-10
+        table.table.table-striped.table-hover
+          tr
+            th.col-lg-1 #
+            th.col-lg-3 标题
+            th.col-lg-1 作者
+            th.col-lg-1 分类目录
+            th.col-lg-2 标签
+            th.col-lg-1 评论数
+            th.col-lg-2 日期
+            th.col-lg-1 状态
+          - for(var i=0;i<articles.length;i++){
+          tr.t_by_cid(cid='#{articles[i].cid}')
+            td #{articles[i].cid}
+            td
+              a(href='/admin/article/edit?cid=#{articles[i].cid}', style='color:#000') #{articles[i].title}
+            td #{articles[i].name}
+            td #{articles[i].categories}
+            td #{articles[i].tags}
+            td
+              span(id='cmt_#{articles[i].cid}') 0
+            td #{articles[i].date}
+            td #{articles[i].status}
+          - }
+    script(src='/javascripts/admin.js')

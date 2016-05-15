@@ -1,0 +1,28 @@
+extends layout
+block content
+  div.container
+    div.container-fluid.col-sm-8
+      div#id-post
+        - var date = new Date();
+        - for(var i=0;i<articles.length;i++){
+          div.panel.panel-default.id-post
+            div.id-post-title(cid='#{articles[i].cid}')
+              h3
+                a(href='/article/#{articles[i].cid}') #{articles[i].title}
+            div.id-post-detail |&nbsp;
+              i.fa.fa-user
+              span &nbsp;
+              a(href='/search/user/#{articles[i].name}') #{articles[i].name}
+              span &nbsp;|&nbsp;
+              i.fa.fa-calendar
+              span &nbsp;#{articles[i].date}
+              span &nbsp;|&nbsp;
+              i.fa.fa-comments-o
+              span &nbsp;
+              span(id='cmt_#{articles[i].cid}') 0
+              span &nbsp;|
+            div.id-post-content #{articles[i].content}
+        - }
+    include common/right
+  script(src='/javascripts/index.js')
+  include common/footer

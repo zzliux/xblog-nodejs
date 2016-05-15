@@ -1,0 +1,29 @@
+extends layout
+block meta
+  meta(name='keywords',content='#{article.tagsMeta}')
+block link
+  link(rel='stylesheet',href='/stylesheets/markdown.css')
+  link(rel='stylesheet',href="/plugins/highlightjs/styles/railscasts.css")
+block content
+  div.container
+    div.panel.panel-default.atc-post
+      div.atc-post-title
+        h1 #{article.title}
+      hr
+      article.markdown-body !{article.content}
+      hr
+      div.atc-post-details
+        span |&nbsp;
+        i.fa.fa-tags
+        span &nbsp;!{article.tags}&nbsp;|&nbsp;
+        i.fa.fa-tasks
+        span &nbsp;!{article.categories}&nbsp;|&nbsp;
+        i.fa.fa-user
+        span &nbsp;!{article.name}&nbsp;|&nbsp;
+        i.fa.fa-calendar
+        span &nbsp;!{article.date}&nbsp;|
+    div.ds-thread(data-thread-key='#{article.cid}', data-title='#{article.title}')
+  script(type='text/javascript',src='/plugins/highlightjs/highlight.pack.js')
+  script(type='text/javascript',src='/javascripts/article.js')
+  script(type='text/javascript',src='/javascripts/thumb2full.js')
+  include common/footer

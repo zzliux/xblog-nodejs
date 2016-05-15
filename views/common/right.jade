@@ -1,0 +1,51 @@
+.container-fluid.col-sm-4
+  .panel.panel-default
+    .panel-heading 热评文章
+    .panel-body.id-hot(style='padding-top:0px')
+      ul.ds-top-threads(data-range='monthly' data-num-items='5')
+  //-
+    .panel.panel-default
+      .panel-heading 他们来过
+      .panel-body.id-vistors
+        ul.ds-recent-visitors(data-num-items='21')
+    .panel.panel-default
+      .panel-heading 最新评论
+      .panel-body.id-latestcomment(style='padding-top:0px')
+        .ds-recent-comments(data-num-items='5' data-show-avatars='1' data-show-time='1' data-show-title='1' data-show-admin='1' data-excerpt-length='70')
+  - if(categories)
+    .panel.panel-default
+      .panel-heading 分类目录
+      .panel-body
+        ul
+          - for(var key in categories){
+            li
+              a(href='/search/category/#{key}') #{key}
+              | (#{categories[key]})
+          - }
+  - if(tags)
+    .panel.panel-default
+      .panel-heading 标签
+      .panel-body#id-tags
+        - for(var key in tags){
+          - var fts = tags[key]*2+12;
+            a(s='#{fts}') #{key}
+        - }
+
+
+
+  .panel.panel-default
+    .panel-heading 友情链接
+    .panel-body
+      a(href='http://iimx.net' target='_blank') iiMX
+      | &nbsp;
+      a(href='http://www.itlife.top' target='_blank') 贤德ACM队
+      | &nbsp;
+      a(href='http://blog.csdn.net/liyongfan152' target='_blank') Aelsy
+      | &nbsp;
+      a(href='http://www.changwei.me/' target='_blank') 昌维的博客
+      | &nbsp;
+      a(href='http://www.360www.cn/' target='_blank') 艾维网页设计导航
+      | &nbsp;
+      a(href='http://tangpeiliang.com/' target='_blank') 唐佩良的博客
+      | &nbsp;
+      a(href='http://nulll.me/' target='_blank') 滥情
