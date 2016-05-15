@@ -1,3 +1,5 @@
 ssl/ca_bundle.crt
 ssl/certificate.crt
 ssl/private.key
+node_modules/
+config/db.js
