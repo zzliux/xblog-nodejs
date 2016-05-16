@@ -25,7 +25,7 @@ router.post('/',function(req, res, next){
             title: rows[i].title,
             date: dt.format('yyyy-MM-dd'),
             name: rows[i].name,
-            content: (rows[i].content.length>50) ? (rows[i].content.substr(0, 50) + '...') : (rows[i].content),
+            content: (rows[i].content.length>100) ? (rows[i].content.substr(0, 100) + '...').replace(/\n/g, ' ').replace(/[#*`]/g,'').replace(/</g,'&lt;').replace(/>/g,'&gt;') : (rows[i].content).replace(/\n/g, ' ').replace(/[#*`>]/g,'').replace(/</g,'&lt;').replace(/>/g,'&gt;'),
           };
         }
         res.send(atcs);

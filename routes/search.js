@@ -17,8 +17,8 @@ router.get('/s',function(req, res, next){
       rows[i].date = date.format('yyyy-MM-dd');
 
       //把内容省略化
-      if(rows[i].content.length > 50){
-        rows[i].content = rows[i].content.substr(0,50)+'...';
+      if(rows[i].content.length > 100){
+        rows[i].content = rows[i].content.substr(0,100).replace(/\n/g, ' ').replace(/[#*`]/g,'') + '...';
       }
     }
     res.render('search',{
@@ -64,8 +64,8 @@ router.get('/:method/:word',function(req, res, next){
         rows[i].date = date.format('yyyy-MM-dd');
 
         //把内容省略化
-        if(rows[i].content.length > 50){
-          rows[i].content = rows[i].content.substr(0,50)+'...';
+        if(rows[i].content.length > 100){
+          rows[i].content = rows[i].content.substr(0,100).replace(/\n/g, ' ').replace(/[#*`]/g,'') + '...';
         }
       }
       res.render('search',{

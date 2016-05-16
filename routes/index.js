@@ -24,8 +24,8 @@ router.get('/', function(req, res, next) {
         rows1[i].date = date.format('yyyy-MM-dd');
 
         //把内容省略化
-        if(rows1[i].content.length > 50){
-          rows1[i].content = rows1[i].content.substr(0,50).replace(/\n/g, ' ') + '...';
+        if(rows1[i].content.length > 100){
+          rows1[i].content = rows1[i].content.substr(0,100).replace(/\n/g, ' ').replace(/[#*`]/g,'') + '...';
         }
       }
       for(var i=0;i<rows2.length;i++){
