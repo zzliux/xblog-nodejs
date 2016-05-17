@@ -87,7 +87,7 @@ router.get('/article/edit', function(req, res, next){
       })
     }
     else{
-      res.render('admin-article-edit',{article:{content:'',title:'',tags:'',categories:''}});
+      res.render('admin-article-edit',{article:{cid:req.query.cid,content:'',title:'',tags:'',categories:''}});
     }
   }
 });

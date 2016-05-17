@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(session({
   secret: 'xblog',
-  cookie: {maxAge:1440000},
+  cookie: {maxAge:86400000},//一天
   resave: false,
   saveUninitialized: true,
 }));

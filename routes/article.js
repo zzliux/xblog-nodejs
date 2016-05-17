@@ -5,14 +5,18 @@ var conn              = require('../common/dbConnection');
 var md                = require('marked');
 
 router.get('/:cid', function(req, res, next) {
-  conn.query('SELECT * FROM `xblog_userinfo` INNER JOIN  `xblog_articles` ON `xblog_userinfo`.`uid` = `xblog_articles`.`uid` WHERE `status` = 1 AND `cid` = ?', [parseInt(req.params.cid)], function(err, rows, fields){
+  var flag = '`status` = 1 AND ';
+  if(req.session.user && req.session.user.id){
+    flag = '';
+  }
+  conn.query('SELECT * FROM `xblog_userinfo` INNER JOIN  `xblog_articles` ON `xblog_userinfo`.`uid` = `xblog_articles`.`uid` WHERE '+ flag+ '`cid` = ?', [parseInt(req.params.cid)], function(err, rows, fields){
     if(err) {
       console.log(err.message);
       res.status(500).send('err 500');
     }
     if(rows.length > 0){
       var atc = {
-        title: rows[0].title,
+        title: rows[0].title + (rows[0].status ? '' : '(草稿)'),
         name: '<a href="/search/user/' + rows[0].name + '">' + rows[0].name+ '</a>',
         content: md(rows[0].content),
         tagsMeta: rows[0].tags,

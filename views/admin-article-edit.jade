@@ -44,6 +44,8 @@ html
               input.btn.btn-primary(type='submit', onclick='check(0);', value='保存为草稿')
               - if(btn){
                 | &nbsp;
+                a.btn.btn-primary(href='/article/#{article.cid}',style='color:#fff',target='xblog_view_draft') 查看草稿
+                | &nbsp;
                 input.btn.btn-primary(type='submit', onclick='check(1);', value='发布')
                 input.btn.btn-danger(type='submit', onclick='check(2);', style='float:right', value='删除')
               - }
