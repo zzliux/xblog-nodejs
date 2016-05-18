@@ -22,13 +22,7 @@ html
             li
               a(href='/article/9') About Me
     .container-fluid
-      .col-sm-2
-        ul.list-group
-          a.list-group-item(href='/admin') 总览
-          a.list-group-item(href='/admin/article') 文章列表
-          a.list-group-item(href='/admin/article/edit') 撰写文章
-          a.list-group-item(href='/admin/upload') 上传图片
-          a.list-group-item(href='#') 栏目5
+      include common/admin-left
       .col-sm-10
         .panel.panel-default
           .panel-heading 上传图片
@@ -48,7 +42,7 @@ html
                 input.adm-file-input(type='button', onclick='uploadFile()', value='上传')
         .panel.panel-default
           .panel-heading 文件列表
-          .panel-body
+          .panel-body#adm-img-containner
             - for(var i=0; i<imgs.length; i++){
               .adm-img-box
                 img(src='#{imgs[i]}')

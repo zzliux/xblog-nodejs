@@ -23,13 +23,7 @@ html
             li
               a(href='/article/9') About Me
     .container-fluid
-      .col-sm-2
-        ul.list-group
-          a.list-group-item(href='/admin') 总览
-          a.list-group-item(href='/admin/article') 文章列表
-          a.list-group-item(href='/admin/article/edit') 撰写文章
-          a.list-group-item(href='/admin/upload') 上传图片
-          a.list-group-item(href='#') 栏目5
+      include common/admin-left
       .container.col-sm-10
         .panel.panel-default
           .panel-heading 撰写文章

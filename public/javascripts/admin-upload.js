@@ -9,17 +9,15 @@ function fileSelected() {
 		else
 			fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + 'KB';
 		document.getElementById('fileSize').innerHTML = 'Size: ' + fileSize;
-		document.getElementById('adm-upload-btn').style = "display:inline-block";
+		document.getElementById('adm-upload-btn').style.cssText = "display:inline-block";
 		document.getElementById('prebox').innerHTML = '<img src="'+file.url+'" class="prebox"/>';
+		document.getElementById('progress').style.cssText = 'width:0%';
+		document.getElementById('progressbox').style.cssText = 'display:none';
 	}
 }
-var first = true;
 function uploadFile() {
-	if(first){
-		document.getElementById('progressbox').style = 'width:200px;display:block;';
-		document.getElementById('adm-upload-btn').style = 'display:none';
-		first = false;
-	}
+	document.getElementById('progressbox').style.cssText = 'width:200px;display:block;';
+	document.getElementById('adm-upload-btn').style.cssText = 'display:none';
 	var fd = new FormData();
 	fd.append("fileToUpload", document.getElementById('fileToUpload').files[0]);
 	var xhr = new XMLHttpRequest();
@@ -34,7 +32,7 @@ function uploadProgress(evt) {
 	if (evt.lengthComputable) {
 		var percentComplete = Math.round(evt.loaded * 100 / evt.total);
 		document.getElementById('progress').setAttribute('valuenow',percentComplete);
-		document.getElementById('progress').style = 'width:'+percentComplete+'%;';
+		document.getElementById('progress').style.cssText = 'width:'+percentComplete+'%;';
 		document.getElementById('progress').innerHTML = '<span class="">'+percentComplete+'%</span>';
 	}
 	else {
@@ -43,6 +41,7 @@ function uploadProgress(evt) {
 }
 function uploadComplete(evt) {
 	document.getElementById("progress").innerHTML = JSON.parse(evt.target.responseText).msg;
+	document.getElementById('adm-img-containner').innerHTML += '<div class="adm-img-box"><img src="' + JSON.parse(evt.target.responseText).path +'"></div>';
 }
 function uploadFailed(evt) {
 	console.log("There was an error attempting to upload the file.");

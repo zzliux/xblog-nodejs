@@ -1,5 +1,5 @@
 * {
-	font-family: Helvetica, Tahoma, Arial, "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", sans-serif;
+	font-family: "YaHei Consolas Hybrid", Consolas, "微软雅黑", "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", Helvetica, "Monaco", courier, monospace;
 }
 .id-post-content {
 	padding: 10px;
@@ -55,6 +55,9 @@ footer a,
 #id-tags > a {
 	display: inline-block;
 	margin:-999px 3px;
+}
+#tplfls a {
+	display:block;
 }
 .disabled {
 	cursor: not-allowed;

@@ -91,7 +91,8 @@ router.get('/article/edit', function(req, res, next){
     }
   }
 });
-/* ajax接口 */
+
+/* 文章编辑的ajax接口 */
 router.post('/article/ajax', function(req, res, next){
   if(!req.session.user.id){
     res.redirect('/admin/login');
@@ -153,7 +154,7 @@ router.post('/article/ajax', function(req, res, next){
 })
 
 
-
+/* 上传图片的前端页面展示 */
 router.get('/upload', function(req, res, next){
   if(!req.session.user.id){
     res.redirect('/admin/login');
@@ -167,7 +168,7 @@ router.get('/upload', function(req, res, next){
   }
 })
 
-
+/* 上传图片的ajax */
 router.post('/upload/ajax', upload.single('fileToUpload'), function(req, res, next){
   if(!req.session.user.id){
     res.redirect('/admin/login');
@@ -197,7 +198,7 @@ router.post('/upload/ajax', upload.single('fileToUpload'), function(req, res, ne
             image.scale(scale, function(err, image){
               image.toBuffer(suffix.substr(1),function(err, buffer){
                 fs.writeFile(fileThumbPath, buffer, function(err){
-                  res.send({errcode:0,msg:'上传成功'});
+                  res.send({errcode:0,msg:'上传成功',path:fileThumbPath.substr(6)});
                 })
               });
             })
@@ -208,7 +209,52 @@ router.post('/upload/ajax', upload.single('fileToUpload'), function(req, res, ne
   }
 });
 
+/* 模板编辑的页面展示 */
+router.get('/template',function(req, res, next){
+  if(!req.session.user.id){
+    res.redirect('/admin/login');
+  }else{
+    var files = readFiles('views');
+    res.render('admin-template',{
+      files: files
+    });
+    function readFiles(path){
+      if(fs.statSync(path).isDirectory()){
+        var fls = fs.readdirSync(path);
+        for(var i=0;i<fls.length;i++){
+          fls[i] = path + '/' + fls[i];
+          if(fs.statSync(fls[i]).isDirectory()){
+            fls[i] = readFiles(fls[i]);
+          }
+        }
+        return fls;
+      }else{
+        return path;
+      }
+    }
+  }
+});
+
+/* 模板编辑的ajax */
+router.post('/template/ajax', function(req, res, next){
+  if(!req.session.user.id){
+    res.redirect('/admin/login');
+  }else{
+    if(req.body.type === 'read'){
+      if(!fs.existsSync(req.body.data)){
+        res.status(500).send('err 500');
+      }else{
+        res.send({
+          fileContent:fs.readFileSync(req.body.data,'utf8')
+        });
+      }
+    }else if(req.body.type === 'write'){
+      fs.writeFileSync(req.body.path, req.body.data, {encoding:'utf8',flag:'w+'});
+      res.send({errcode:0,msg:'保存成功'});
+    }else{
+      res.status(500).send('err 500');
+    }
+  }
+})
 
 module.exports = router;
-
-//  http://www.zzliux.com/static/image/origin/6c76f9e846bb3e456ac4d11a7a28e99a.gif
