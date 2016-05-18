@@ -39,7 +39,8 @@ footer a,
 }
 .id-vistors ul,
 .id-hot ul {
-	padding-left: 0px;
+	padding: 0px 10px;
+	margin-top: -1px;
 }
 .id-post-more {
 	-moz-transition: all 150ms ease-in;

@@ -215,6 +215,8 @@ router.get('/template',function(req, res, next){
     res.redirect('/admin/login');
   }else{
     var files = readFiles('views');
+    files.push(readFiles('public/stylesheets'));
+    files.push(readFiles('public/javascripts'));
     res.render('admin-template',{
       files: files
     });

@@ -41,6 +41,7 @@ $(function() {
 				success:function(data){
 					$('#readModal').modal('hide');
 					editor.setValue(data.fileContent);
+					editor.focus();
 				},
 				error:function(){
 					$('#readModal').modal('hide');
