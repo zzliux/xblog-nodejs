@@ -1,6 +1,6 @@
 var editor;
+var path;
 $(function() {
-	var path;
 	editor = editormd("editormd", {
 		path : "/plugins/editormd/lib/",
 		height : 650,
@@ -51,25 +51,25 @@ $(function() {
 			});
 		}
 	});
-	function save(){
-		$.ajax({
-			url:'/admin/template/ajax',
-			type:'post',
-			dataType:'json',
-			cache:false,
-			data:{
-				type:'write',
-				path: path,
-				data:editor.getValue()
-			},
-			success:function(data){
-				$('#saveModal').modal();
-				$('#saveModal').modal('hide');
-				$('#saveSuccessModal').modal();
-			},
-			error:function(){
-				alert('请求失败');
-			}
-		});
-	}
 });
+function save(){
+	$.ajax({
+		url:'/admin/template/ajax',
+		type:'post',
+		dataType:'json',
+		cache:false,
+		data:{
+			type:'write',
+			path: path,
+			data:editor.getValue()
+		},
+		success:function(data){
+			$('#saveModal').modal();
+			$('#saveModal').modal('hide');
+			$('#saveSuccessModal').modal();
+		},
+		error:function(){
+			alert('请求失败');
+		}
+	});
+}
