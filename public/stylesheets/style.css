@@ -116,6 +116,9 @@ footer a,
 .to-top-btn:hover {
 	background: #f5f5f5;
 }
+.form-group {
+	margin-left: 5px;
+}
 @media (max-width: 767px) {
 	.container {
 		padding:0px;
