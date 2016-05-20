@@ -45,10 +45,12 @@ router.get('/:cid', function(req, res, next) {
       res.render('article',{
         siteTitle: atc.title + ' | zzliux\'s blog',
         article: atc,
+        reqTime: req.requestTime
       });
     }else{
       res.status(404).render('404',{
-        siteTitle : '404 | zzliux\'s blog'
+        siteTitle : '404 | zzliux\'s blog',
+        reqTime: req.requestTime
       });
     }
   });

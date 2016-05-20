@@ -23,12 +23,14 @@ router.get('/s',function(req, res, next){
     }
     res.render('search',{
       articles: rows,
-      siteTitle: req.query.word + ' | zzliux\'s blog'
+      siteTitle: req.query.word + ' | zzliux\'s blog',
+      reqTime: req.requestTime
     });
    });
   }else{
     res.status(404).render('404',{
-      siteTitle : '404 | zzliux\'s blog'
+      siteTitle : '404 | zzliux\'s blog',
+      reqTime: req.requestTime
     });
   }
 });
@@ -52,7 +54,8 @@ router.get('/:method/:word',function(req, res, next){
     flag = true;
   }else{
     res.render('404',{
-      siteTitle: '404 | zzliux\'s blog'
+      siteTitle: '404 | zzliux\'s blog',
+      reqTime: req.requestTime
     });
   }
   if(flag){
@@ -70,7 +73,8 @@ router.get('/:method/:word',function(req, res, next){
       }
       res.render('search',{
         articles: rows,
-        siteTitle: req.params.word + ' | zzliux\'s blog'
+        siteTitle: req.params.word + ' | zzliux\'s blog',
+        reqTime: req.requestTime
       });
     });
   };
@@ -78,13 +82,15 @@ router.get('/:method/:word',function(req, res, next){
 
 router.get('/',function(req, res, next){
   res.status(404).render('404',{
-    siteTitle : '404 | zzliux\'s blog'
+    siteTitle : '404 | zzliux\'s blog',
+    reqTime: req.requestTime
   });
 });
 
 router.get('/:str',function(req, res, next){
   res.status(404).render('404',{
-    siteTitle : '404 | zzliux\'s blog'
+    siteTitle : '404 | zzliux\'s blog',
+    reqTime: req.requestTime
   });
 });
 

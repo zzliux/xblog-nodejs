@@ -47,16 +47,11 @@ router.get('/', function(req, res, next) {
         articles: rows1,
         siteTitle: 'zzliux\'s blog',
         tags: tags,
-        categories: categories
+        categories: categories,
+        reqTime: req.requestTime
       });
     })
   });
 });
 
-/*router.get('/:str', function(req, res, next){
-  res.status(404).render('404',{
-    siteTitle : '404 | zzliux\'s blog'
-  });
-})
-*/
 module.exports = router;

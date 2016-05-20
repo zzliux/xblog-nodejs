@@ -8,6 +8,10 @@ var path         = require('path');
 var app          = express();
 
 /* 中间件 */
+app.use(function(req, res, next){
+  req.requestTime = (new Date()).getTime();
+  next();
+});
 app.use(compression());
 app.use(bodyParser.json());
 app.use(cookieParser());
