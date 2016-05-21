@@ -10,7 +10,7 @@ $(function() {
 		searchReplace : true,
 		placeholder : "Enjoy coding!",
 		theme : "default",
-		mode : "jade",
+		mode : "text",
 		onload : function(){
 			var keyMap = {
 				"Ctrl-S": function(cm) {

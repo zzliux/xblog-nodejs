@@ -1,0 +1,28 @@
+{{ include common/head }}
+</head>
+<body>
+{{ include common/nav }}
+<div class="container">
+	<div class="container-fluid col-sm-8">
+		<div id="id-post">
+		{{# for(var i=0;i<d.articles.length;i++){ }}
+			<div class="panel panel-default id-post">
+				<div cid="{{ d.articles[i].cid }}" class="id-post-title">
+					<h3><a href="/article/{{ d.articles[i].cid }}">{{= d.articles[i].title }}</a></h3>
+				</div>
+				<div class="id-post-detail">
+					|&nbsp;<i class="fa fa-user"></i>&nbsp;<a href="/search/user/{{= d.articles[i].name }}">{{= d.articles[i].name }}</a>&nbsp;|&nbsp;<i class="fa fa-calendar"></i>&nbsp;{{= d.articles[i].date }}&nbsp;|&nbsp;<i class="fa fa-comments-o"></i>&nbsp;<span id="cmt_{{ d.articles[i].cid }}">0&nbsp;|</span>
+				</div>
+				<div class="id-post-content">
+					{{= d.articles[i].content }}
+				</div>
+			</div>
+		{{# } }}
+		</div>
+	</div>
+	<div class="container-fluid col-sm-4">
+		{{ include common/right }}
+	</div>
+</div>
+<script src="/javascripts/index.js"></script>
+{{ include common/footer }}

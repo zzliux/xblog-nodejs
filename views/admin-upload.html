@@ -1,0 +1,48 @@
+{{ include common/admin-head }}
+<title>文件上传 - 后台管理</title>
+</head>
+<body>
+{{ include common/nav }}
+<div class="container-fluid">
+	<div class="col-sm-2">
+		{{ include common/admin-left }}
+	</div>
+	<div class="col-sm-10">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				上传图片
+			</div>
+			<div class="panel-body">
+				<form action="">
+					<div class="form-group">
+						<a href="javascript:;" class="adm-file-input">选择图片<input id="fileToUpload" type="file" name="fileToUpload" accept=".jpg,.png,.gif" onchange="fileSelected();"></a>
+					</div>
+					<div id="prebox"></div>
+					<div id="fileSize"></div>
+					<div id="fileType"></div>
+					<div id="progressbox" style="width:200px;display: none" class="progress">
+						<div id="progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;" class="progress-bar progress-bar-striped active">
+							<span>0%</span>
+						</div>
+					</div>
+					<div id="adm-upload-btn" style="display: none" class="form-group">
+						<input type="button" onclick="uploadFile()" value="上传" class="adm-file-input">
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				图片列表
+			</div>
+			<div id="adm-img-containner" class="panel-body">
+				{{# for(var i=0;i<d.imgs.length; i++){ }}
+					<div class="adm-img-box"><img src="{{ d.imgs[i] }}"></div>
+				{{# } }}
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/javascripts/thumb2full.js"></script>
+<script type="text/javascript" src="/javascripts/admin-upload.js"></script>
+{{ include common/footer }}

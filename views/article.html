@@ -1,0 +1,28 @@
+{{ include common/head }}
+<link rel="stylesheet" href="/stylesheets/markdown.css">
+<link rel="stylesheet" href="/plugins/highlightjs/styles/railscasts.css">
+</head>
+<body>
+{{ include common/nav }}
+
+<div class="container">
+	<div class="panel panel-default atc-post">
+		<div class="atc-post-title">
+			<h1>{{= d.article.title }}</h1>
+		</div>
+		<hr>
+		<article class="markdown-body">
+			{{ d.article.content }}
+		</article>
+		<hr>
+		<div class="atc-post-details">
+			|&nbsp;<i class="fa fa-tags"></i>&nbsp;{{ d.article.tags }}&nbsp;|&nbsp;<i class="fa fa-tasks"></i>&nbsp;{{ d.article.categories }}&nbsp;|&nbsp;<i class="fa fa-user"></i>&nbsp;{{ d.article.name }}&nbsp;|&nbsp;<i class="fa fa-calendar"></i>&nbsp;{{ d.article.date }}&nbsp;|
+		</div>
+	</div>
+	<div data-thread-key="{{ d.article.cid }}" data-title="给Node.js站点披上https外衣" class="ds-thread">
+	</div>
+</div>
+<script src="/plugins/highlightjs/highlight.pack.js"></script>
+<script src="/javascripts/article.js"></script>
+<script src="/javascripts/thumb2full.js"></script>
+{{ include common/footer }}

@@ -20,14 +20,19 @@ router.get('/', function(req, res, next){
   if(!req.session.user.id){
     res.redirect('/admin/login');
   }else{
-    res.render('admin',{});
+    res.render('admin',{
+      reqTime: req.requestTime
+    });
   }
 });
 
 
 /* 登录逻辑 */
 router.get('/login', function(req, res, next){
-  res.render('admin-login', {msg:''});
+  res.render('admin-login', {
+    msg:'',
+    reqTime: req.requestTime
+  });
 })
 router.post('/login', function(req, res, next){
   req.session.user = {};  //清空登录状态防止出现别的问题
@@ -41,7 +46,10 @@ router.post('/login', function(req, res, next){
         req.session.user.url = rows[0].url;
         res.redirect('/admin');
       }else{
-        res.render('admin-login', {msg:'用户名或密码错误'})
+        res.render('admin-login', {
+          msg:'用户名或密码错误',
+          reqTime: req.requestTime
+        })
       }
     });
   }else{
@@ -58,11 +66,12 @@ router.get('/article', function(req, res, next){
       var dt = new Date();
       for(var i=0;i<rows.length;i++){
         dt.setTime(rows[i].date * 1000);
-        rows[i].date = dt.format('yyyy-mm-dd');
+        rows[i].date = dt.format('yyyy-MM-dd');
         rows[i].status = (parseInt(rows[i].status)===1) ? '已发布' : '草稿';
       }
       res.render('admin-article',{
-        articles: rows
+        articles: rows,
+        reqTime: req.requestTime
       });
     })
   }
@@ -78,7 +87,8 @@ router.get('/article/edit', function(req, res, next){
         if(rows.length > 0){
           res.render('admin-article-edit',{
             article: rows[0],
-            btn: true
+            btn: true,
+            reqTime: req.requestTime
           });
         }else{
           res.status(500).send('err 500');
@@ -87,7 +97,16 @@ router.get('/article/edit', function(req, res, next){
       })
     }
     else{
-      res.render('admin-article-edit',{article:{cid:req.query.cid,content:'',title:'',tags:'',categories:''}});
+      res.render('admin-article-edit',{
+        article:{
+          cid:req.query.cid,
+          content:'',
+          title:'',
+          tags:'',
+          categories:''
+        },
+        reqTime: req.requestTime
+      });
     }
   }
 });
@@ -163,7 +182,10 @@ router.get('/upload', function(req, res, next){
       for(var i=0; i<files.length; i++){
         files[i] = '/images/thumb/' + files[i];
       }
-      res.render('admin-upload',{imgs: files});
+      res.render('admin-upload',{
+        imgs: files,
+        reqTime: req.requestTime
+      });
     })
   }
 })
@@ -218,7 +240,8 @@ router.get('/template',function(req, res, next){
     files.push(readFiles('public/stylesheets'));
     files.push(readFiles('public/javascripts'));
     res.render('admin-template',{
-      files: files
+      files: files,
+      reqTime: req.requestTime
     });
     function readFiles(path){
       if(fs.statSync(path).isDirectory()){

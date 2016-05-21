@@ -9,10 +9,10 @@ router.get('/:cid', function(req, res, next) {
   if(req.session.user && req.session.user.id){
     flag = '';
   }
-  conn.query('SELECT * FROM `xblog_userinfo` INNER JOIN  `xblog_articles` ON `xblog_userinfo`.`uid` = `xblog_articles`.`uid` WHERE '+ flag+ '`cid` = ?', [parseInt(req.params.cid)], function(err, rows, fields){
+  conn.query('SELECT * FROM `xblog_userinfo` INNER JOIN  `xblog_articles` ON `xblog_userinfo`.`uid` = `xblog_articles`.`uid` WHERE '+ flag + '`cid` = ?', [parseInt(req.params.cid)], function(err, rows, fields){
     if(err) {
       console.log(err.message);
-      res.status(500).send('err 500');
+      return res.status(500).send('err 500');
     }
     if(rows.length > 0){
       var atc = {
