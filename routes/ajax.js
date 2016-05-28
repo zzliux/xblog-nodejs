@@ -5,7 +5,7 @@ var conn              = require('../common/dbConnection');
 
 router.post('/',function(req, res, next){
   if(req.body.type === 'getPage'){
-    conn.query('SELECT * FROM `xblog_userinfo` INNER JOIN  `xblog_articles` ON `xblog_userinfo`.`uid` = `xblog_articles`.`uid` WHERE `status` = 1 ORDER BY `cid` DESC LIMIT ?,?', [parseInt(req.body.start), parseInt(req.body.length)], function(err, rows, fields){
+    conn.query('SELECT `xblog_userinfo`.`uid`,`xblog_userinfo`.`name`,`xblog_userinfo`.`email`,`xblog_userinfo`.`password`,`xblog_userinfo`.`url`,`xblog_userinfo`.`registered`,`cid`,`title`,`content`,`tags`,`categories`,`date`,`status`,`commentstatus`,`priority` FROM `xblog_userinfo` INNER JOIN  `xblog_articles` ON `xblog_userinfo`.`uid` = `xblog_articles`.`uid` WHERE `status` = 1 ORDER BY `cid` DESC LIMIT ?,?', [parseInt(req.body.start), parseInt(req.body.length)], function(err, rows, fields){
       if(err) {
         console.log(err.message);
         res.status(500).send('err 500');

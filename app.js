@@ -33,8 +33,16 @@ app.use('/article', require('./routes/article'));
 app.use('/search', require('./routes/search'));
 app.use('/admin', require('./routes/admin'));
 
+/* 404 */
+app.get('*',function(req, res, next){
+  res.status(404).render('404',{
+    siteTitle : '404 | zzliux\'s blog',
+    reqTime: req.requestTime
+  });
+});
+
 laytpl.config({
-	cache: true,
+	cache: false,
 	min:true,
 });
 app.engine('.html', laytpl.__express);

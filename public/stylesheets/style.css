@@ -1,6 +1,10 @@
 * {
 	font-family: "YaHei Consolas Hybrid", Consolas, "微软雅黑", "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", Helvetica, "Monaco", courier, monospace;
 }
+::selection {
+	color: #fff;
+	background: #999;
+}
 .id-post-content {
 	padding: 10px;
 	word-break: break-all;
@@ -20,40 +24,36 @@ footer a,
 .id-post a {
 	color: #333;
 }
-#id-tags a::before,
+
+.id-post-title a {
+	position: relative;
+    display: inline-block;
+    outline: none;
+    text-decoration: none;
+    color: #000;
+}
+
+.id-post-title a::before,
+.id-post-title a::after {
+	position: absolute;
+	transition: all 200ms ease;
+}
 .id-post-title a::before {
 	content: "";
-	position: absolute;
-	width: 100%;
-	bottom: 0;
-	left: 0;
-	background-color: #000;
-	visibility: hidden;
-	transform: scaleX(0);
-	transition-timing-function: ease-in-out;
-	transition-delay: 0s;
+	left: 0px;
+	bottom: 2.5px;
 }
-#id-tags a::before {
-	height: 1px;
-	transition-duration: 0.1s;
+.id-post-title a::after {
+	content: "";
+	right:0px;
+	bottom: 2.5px;
 }
-.id-post-title a::before {
-	height: 2px;
-	transition-duration: 0.2s;
-}
-#id-tags a,
-.id-post-title a {
-	text-decoration: none;
-	display: inline-block;
-	position: relative;
-	border-bottom: none;
-	line-height: 1.2;
-	vertical-align: bottom;
-}
-#id-tags a:hover::before,
+
 .id-post-title a:hover::before {
-	visibility: visible;
-	transform: scaleX(1);
+	content: "\5B"; left: -15px;
+}
+.id-post-title a:hover::after {
+	content: "\5D"; right: -15px;
 }
 .atc-post {
 	padding: 10px;
@@ -78,10 +78,10 @@ footer a,
 	margin-top: -1px;
 }
 .id-post-more {
-	-moz-transition: all 150ms ease-in;
-	-webkit-transition: all 150ms ease-in;
-	-o-transition: all 150ms ease-in;
-	transition: all 150ms ease-in;
+	-moz-transition: all 150ms ease;
+	-webkit-transition: all 150ms ease;
+	-o-transition: all 150ms ease;
+	transition: all 150ms ease;
 	text-align: center;
 	cursor: pointer;
 }
@@ -163,6 +163,9 @@ footer a,
 .navbar-header {
 	margin: 0px 0px !important;
 }
+.nav>li {
+	margin: 0px 15px;
+}
 @media (max-width: 767px) {
 	.container {
 		padding:0px;
@@ -179,5 +182,8 @@ footer a,
 	}
 	.id-post-container {
 		padding: 0px;
+	}
+.id-post-title h3 {
+		font-size: 20px;
 	}
 }

@@ -38,7 +38,7 @@ router.post('/login', function(req, res, next){
   req.session.user = {};  //清空登录状态防止出现别的问题
   if(req.body && req.body.email && req.body.password){
     req.body.password = utils.md5(req.body.password + cfg.pass_salt);
-    conn.query('SELECT * FROM `xblog_userinfo` WHERE `email` = ? AND password = ?',[req.body.email, req.body.password],function(err, rows, fields){
+    conn.query('SELECT * FROM `xblog_userinfo` WHERE `email` = ? AND password = ? LIMIT 1',[req.body.email, req.body.password],function(err, rows, fields){
       if(rows.length === 1){
         req.session.user.id = rows[0].uid;
         req.session.user.name = rows[0].name;
