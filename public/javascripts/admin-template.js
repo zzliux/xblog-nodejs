@@ -23,9 +23,10 @@ $(function() {
 	$('#tplfls').bind('click', function(event){
 		if(event.target.tagName === 'A'){
 			path = event.target.innerHTML;
-			var _t = $('#tplfls>.panel-body')[0].childNodes;
+			var _t = $('#tplfls>.panel-body>ul')[0].childNodes;
 			for(var i=0;i<_t.length;i++){
-				_t[i].style.color = '#333';
+				if(_t[i].tagName === 'LI')
+					_t[i].childNodes[0].style.color = '#333';
 			}
 			event.target.style.color = '#f00';
 			$('#readModal').modal();
