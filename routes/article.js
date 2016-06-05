@@ -21,6 +21,7 @@ router.get('/:cid', function(req, res, next) {
         content: md(rows[0].content),
         tagsMeta: rows[0].tags,
         cid: rows[0].cid,
+        status: rows[0].status ? true : false
       };
       /* 将tags加上链接 */
       var t = rows[0].tags.split(',');
