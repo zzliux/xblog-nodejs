@@ -1,25 +1,8 @@
-(function(){
-	/* 获取文章评论数 */
-	$.ajax({
-		url:(document.location.protocol == 'https:' ? 'https:' : 'http:') + '//api.duoshuo.com/threads/counts.jsonp',
-		type:'get',
-		dataType: 'jsonp',
-		data: {
-			short_name: 'zzliux',
-			threads: getAllCid(),
-		},
-		success: function(data){
-			$.each(data.response,function(){
-				console.log($('#cmt_'+this.thread_key)[0]);
-				$('#cmt_'+this.thread_key)[0].innerHTML = this.comments;
-			});
-		},
-	});
-	function getAllCid(){
-		var arr = [];
-		$('.t_by_cid').each(function(){
-			arr.push(this.getAttribute('cid'));
-		});
-		return arr.join(',');
-	}
-})()
+var duoshuoQuery = {short_name:"zzliux"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();

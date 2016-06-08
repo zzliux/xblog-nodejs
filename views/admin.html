@@ -7,5 +7,24 @@
 	<div class="col-sm-2">
 		{{ include common/admin-left }}
 	</div>
+	<div class="col-sm-10">
+		<div class="col-sm-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">他们来过</div>
+				<div class="panel-body id-vistors">
+					<ul data-num-items="999" class="ds-recent-visitors"></ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">最新评论</div>
+				<div style="padding-top:0px;margin-top:-1px;" class="panel-body id-latestcomment">
+					<div data-num-items="200" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70" class="ds-recent-comments"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+<script src="/javascripts/admin.js"></script>
 {{ include common/footer }}
