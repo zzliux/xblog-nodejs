@@ -5,6 +5,12 @@ var conn              = require('../common/dbConnection');
 var md                = require('marked');
 
 router.get('/:cid', function(req, res, next) {
+  if(!req.params.cid.match(/\d+/)){
+    return res.status(404).render('404',{
+      siteTitle : '404 | zzliux\'s blog',
+      reqTime: req.requestTime
+    });
+  }
   var flag = '`status` = 1 AND ';
   if(req.session.user && req.session.user.id){
     flag = '';

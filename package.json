@@ -15,7 +15,7 @@
     "laytpl": "^1.2.7",
     "marked": "^0.3.5",
     "multer": "^1.1.0",
-    "mysql": "^2.10.2",
+    "mysql2": "^1.0.0-rc.3",
     "node-lwip": "^0.1.3",
     "serve-favicon": "~2.2.1",
     "spdy": "^3.3.3",
