@@ -9,7 +9,8 @@ var fs    = require('fs');
 https.createServer({
 	key: fs.readFileSync('ssl/private.key'),
 	cert: fs.readFileSync('ssl/certificate.crt'),
-	ca: fs.readFileSync('ssl/ca_bundle.crt')
+	ca: fs.readFileSync('ssl/ca_bundle.crt'),
+
 },app).listen(443,function(){
 	console.log('https server has started');
 });
