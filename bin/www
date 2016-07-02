@@ -1,16 +1,15 @@
 #!/usr/bin/env node
 
-var app   = require('../app');
-var http  = require('http');
-var https = require('spdy');
-var fs    = require('fs');
+var app  = require('../app');
+var http = require('http');
+var spdy = require('spdy');
+var fs   = require('fs');
 
 
-https.createServer({
+spdy.createServer({
 	key: fs.readFileSync('ssl/private.key'),
 	cert: fs.readFileSync('ssl/certificate.crt'),
 	ca: fs.readFileSync('ssl/ca_bundle.crt'),
-
 },app).listen(443,function(){
 	console.log('https server has started');
 });

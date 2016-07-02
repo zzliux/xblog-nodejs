@@ -110,6 +110,9 @@ footer a,
 .atc-post-details {
 	padding: 0px 30px;
 }
+.atc-post-title {
+	text-align: center;
+}
 .id-post {
 	padding: 0px 10px 10px 10px;
 	margin-bottom: 10px;
