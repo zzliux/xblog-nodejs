@@ -214,9 +214,16 @@ footer a,
 .navbar-header {
 	margin: 0px 0px !important;
 }
-.nav>li {
+.nav > li {
 	margin: 0px 15px;
 }
+
+
+body {
+	transition: all .3s ease;
+	margin-top: -1000px;
+}
+
 @media (max-width: 767px) {
 	.container {
 		padding:0px;
@@ -234,7 +241,7 @@ footer a,
 	.id-post-container {
 		padding: 0px;
 	}
-.id-post-title h3 {
+	.id-post-title h3 {
 		font-size: 20px;
 	}
 }

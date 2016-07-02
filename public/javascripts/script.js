@@ -16,6 +16,7 @@
 		}
 	});
 
+
 	/* 右边栏的标签大小设置以及a的src和target */
 	var _t = $('#id-tags')[0] ? $('#id-tags')[0].childNodes : [];
 	for(var i=0; i<_t.length; i++){
@@ -24,5 +25,23 @@
 			_t[i].setAttribute('target', '_blank');
 			_t[i].style.cssText = 'font-size:'+_t[i].getAttribute('s') + 'px';
 		}
+	}
+
+	/* body 动画 */
+	window.onload = function(){
+
+		$('body')[0].style.marginTop = '0px';
+
+		/* 点击a标签跳转 */
+		$('body').bind('click', function(e){
+			if(e.target.tagName !== 'A') return;
+			if(!e.target.getAttribute('target')){
+				$('body')[0].style.marginTop = '-'+ $('body').height() + 'px';
+				setTimeout(function(){
+					window.location.href = e.target.href;
+				},300)
+				return false;
+			}
+		});
 	}
 })()

@@ -18,8 +18,8 @@ router.get('/', function(req, res){
 		var feed = new rss({
 			title:'zzliux\'s blog',
 			feed_url: 'https://www.zzliux.cn/feed',
-			site_url: 'https://www.zzliux.com',
-			image_url: 'https://www.zzliux.com/favicon.ico',
+			site_url: 'https://www.zzliux.cn',
+			image_url: 'https://www.zzliux.cn/favicon.ico',
 		});
 
 		for(var i=0;i<rows.length;i++){
