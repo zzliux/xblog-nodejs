@@ -14,6 +14,7 @@
 						<hr>
 					{{# } }}
 					{{# for(var i=0; i<d.articles.length; i++){ }}
+					<div class="am-animation-slide-top">
 					<div class="id-title"><a href="/article/{{ d.articles[i].cid }}">{{= d.articles[i].title }}</a></div>
 					<div class="id-detail">
 						<div class="id-item">
@@ -27,7 +28,10 @@
 							<span class="cmt_t" cid="{{ d.articles[i].cid }}" id="cmt_{{ d.articles[i].cid }}">0</span>
 						</div>
 					</div>
-					{{= d.articles[i].content }}
+					<div>
+						{{= d.articles[i].content }}
+					</div>
+					</div>
 					<hr>
 					{{# } }}
 				</div>

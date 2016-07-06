@@ -73,25 +73,33 @@ var page_length = 5;
 							dataATC[this.thread_key].comments = this.comments;
 						});
 						var addStr = '';
+						var i=0;
 						$.each(dataATC,function(){
 							addStr = '\
-					<div class="id-title"><a href="/article/' + this.cid + '">' + this.title + '</a></div>\
-					<div class="id-detail">\
-						<div class="id-item">\
-							<i class="fa fa-user"></i><a href="/search/user/' + this.name + '">' + this.name + '</a>\
-						</div>\
-						<div class="id-item">\
-							<i class="fa fa-calendar"></i>' + this.date + '\
-						</div>\
-						<div class="id-item">\
-							<i class="fa fa-comments-o"></i>\
-							<span class="cmt_t" cid="' + this.cid + '" id="cmt_' + this.cid + '">' + this.comments + '</span>\
-						</div>\
-					</div>\
-					' + this.content + '\
-					<hr>' + addStr;
+								<div class="am-animation-slide-top">\
+									<div class="id-title"><a href="/article/' + this.cid + '">' + this.title + '</a></div>\
+									<div class="id-detail">\
+										<div class="id-item">\
+											<i class="fa fa-user"></i><a href="/search/user/' + this.name + '">' + this.name + '</a>\
+										</div>\
+										<div class="id-item">\
+											<i class="fa fa-calendar"></i>' + this.date + '\
+										</div>\
+										<div class="id-item">\
+											<i class="fa fa-comments-o"></i>\
+											<span class="cmt_t" cid="' + this.cid + '" id="cmt_' + this.cid + '">' + this.comments + '</span>\
+										</div>\
+									</div>\
+									' + this.content + '\
+									</div>\
+								<hr>';
+							(function(i,str){
+								setTimeout(function(){
+									$('#id-post').append(str);
+								},i*100);
+							})(i, addStr);
+							i++;
 						});
-						$('#id-post').append(addStr);
 						$('#id-btn-more').html('加载更多');
 						$('#id-btn-more').bind('click',getAndSetMore);
 						/* 向上滚动 */

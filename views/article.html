@@ -5,13 +5,13 @@
 </body>
 {{ include common/nav }}
 <div class="am-container">
-	<div class="at-title">{{= d.article.title }}</div>
+	<div class="at-title am-animation-slide-top">{{= d.article.title }}</div>
 	<hr>
-	<article class="markdown-body">
+	<article class="markdown-body am-animation-slide-top">
 		{{ d.article.content }}
 	</article>
 	<hr>
-	<div class="at-detail">
+	<div class="at-detail am-animation-slide-top">
 		<div class="at-item">
 			<i class="fa fa-tags"></i>{{ d.article.tags }}
 		</div>
@@ -26,7 +26,7 @@
 		</div>
 	</div>
 	<hr>
-	{{# if(d.article.status){ }}
+		{{# if(d.article.status){ }}
 	<!-- 多说 -->
 	<div data-thread-key="{{ d.article.cid }}" data-title="{{= d.article.title }}" class="ds-thread"></div>
 	{{# } }}
