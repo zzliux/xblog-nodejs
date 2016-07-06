@@ -74,7 +74,7 @@ var page_length = 5;
 						});
 						var addStr = '';
 						$.each(dataATC,function(){
-							addStr += '\
+							addStr = '\
 					<div class="id-title"><a href="/article/' + this.cid + '">' + this.title + '</a></div>\
 					<div class="id-detail">\
 						<div class="id-item">\
@@ -89,7 +89,7 @@ var page_length = 5;
 						</div>\
 					</div>\
 					' + this.content + '\
-					<hr>'
+					<hr>' + addStr;
 						});
 						$('#id-post').append(addStr);
 						$('#id-btn-more').html('加载更多');
