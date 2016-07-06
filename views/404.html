@@ -1,14 +1,15 @@
 {{ include common/head }}
 </head>
+
 <body>
 {{ include common/nav }}
-<div class="container">
-	<div class="panel panel-default col-sm-8">
-		<h1 style="text-align: center;font-weight: bold;font-size:100px;letter-spacing:0px;">404</h1>
+	<div class="am-container">
+		<div class="box404">404<br></div>
+		<p class="p404">你访问的页面不见啦</p>
+		<p class="p404">要不去<a href="/">首页</a>看看吧</p>
 	</div>
-	<div class="container-fluid col-sm-4">
-		{{ include common/right }}
-	</div>
-</div>
-<script src="/javascripts/index.js"></script>
-{{ include common/footer }}
+<footer>
+	{{ include common/footer }}
+</footer>
+</body>
+</html>

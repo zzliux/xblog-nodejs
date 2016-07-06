@@ -1,28 +1,59 @@
 {{ include common/head }}
+
 </head>
 <body>
-{{ include common/nav }}
-<div class="container">
-	<div class="container-fluid col-sm-8">
-		<div id="id-post">
-		{{# for(var i=0;i<d.articles.length;i++){ }}
-			<div class="panel panel-default id-post">
-				<div cid="{{ d.articles[i].cid }}" class="id-post-title">
-					<h3><a href="/article/{{ d.articles[i].cid }}">{{= d.articles[i].title }}</a></h3>
-				</div>
-				<div class="id-post-detail">
-					|&nbsp;<i class="fa fa-user"></i>&nbsp;<a href="/search/user/{{= d.articles[i].name }}">{{= d.articles[i].name }}</a>&nbsp;|&nbsp;<i class="fa fa-calendar"></i>&nbsp;{{= d.articles[i].date }}&nbsp;|&nbsp;<i class="fa fa-comments-o"></i>&nbsp;<span id="cmt_{{ d.articles[i].cid }}">0&nbsp;|</span>
-				</div>
-				<div class="id-post-content">
+	{{ include common/nav }}
+	<div class="am-container">
+		<div class="am-g">
+			<div class="am-u-lg-8">
+				<div id="id-post">
+					{{# if(d.searchKey){ }}
+						<div class="id-title">
+							包涵关键字 {{= d.searchKey }} 的文章
+						</div>
+						<hr>
+					{{# } }}
+					{{# for(var i=0; i<d.articles.length; i++){ }}
+					<div class="id-title"><a href="/article/{{ d.articles[i].cid }}">{{= d.articles[i].title }}</a></div>
+					<div class="id-detail">
+						<div class="id-item">
+							<i class="fa fa-user"></i><a href="/search/user/{{= d.articles[i].name }}">{{= d.articles[i].name }}</a>
+						</div>
+						<div class="id-item">
+							<i class="fa fa-calendar"></i>{{= d.articles[i].date }}
+						</div>
+						<div class="id-item">
+							<i class="fa fa-comments-o"></i>
+							<span class="cmt_t" cid="{{ d.articles[i].cid }}" id="cmt_{{ d.articles[i].cid }}">0</span>
+						</div>
+					</div>
 					{{= d.articles[i].content }}
+					<hr>
+					{{# } }}
 				</div>
 			</div>
-		{{# } }}
+			<div class="am-u-lg-4">
+			{{ include common/right }}
+			</div>
 		</div>
+		<hr>
 	</div>
-	<div class="container-fluid col-sm-4">
-		{{ include common/right }}
-	</div>
-</div>
-<script src="/javascripts/index.js"></script>
-{{ include common/footer }}
+
+
+<footer>
+	<script>
+		/* 多说 */
+		var duoshuoQuery = {short_name:"zzliux"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+	</script>
+	{{ include common/footer }}
+</footer>
+
+</body>
+</html

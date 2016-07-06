@@ -5,7 +5,7 @@ var conn              = require('../common/dbConnection');
 
 router.get('/s',function(req, res, next){
   if(req.query.word){
-    conn.query('SELECT `xblog_userinfo`.`uid`,`xblog_userinfo`.`name`,`xblog_userinfo`.`email`,`xblog_userinfo`.`password`,`xblog_userinfo`.`url`,`xblog_userinfo`.`registered`,`cid`,`title`,`content`,`tags`,`categories`,`date`,`status`,`commentstatus`,`priority` FROM `xblog_userinfo` INNER JOIN  `xblog_articles` ON `xblog_userinfo`.`uid` = `xblog_articles`.`uid` WHERE `status` = 1 AND (`xblog_articles`.`title` LIKE ? OR `xblog_articles`.`content` LIKE ?)',['%'+req.query.word+'%','%'+req.query.word+'%'],function(err, rows, fields){
+    conn.query('SELECT `xblog_userinfo`.`uid`,`xblog_userinfo`.`name`,`xblog_userinfo`.`email`,`xblog_userinfo`.`password`,`xblog_userinfo`.`url`,`xblog_userinfo`.`registered`,`cid`,`title`,`content`,`tags`,`categories`,`date`,`status`,`commentstatus`,`priority` FROM `xblog_userinfo` INNER JOIN  `xblog_articles` ON `xblog_userinfo`.`uid` = `xblog_articles`.`uid` WHERE `status` = 1 AND (`xblog_articles`.`title` LIKE ? OR `xblog_articles`.`content` LIKE ?) ORDER BY `cid` DESC',['%'+req.query.word+'%','%'+req.query.word+'%'],function(err, rows, fields){
     var date = new Date();
     if(err) {
       console.log(err.message);
@@ -23,6 +23,7 @@ router.get('/s',function(req, res, next){
     }
     res.render('search',{
       articles: rows,
+      searchKey: req.query.word,
       siteTitle: req.query.word + ' | zzliux\'s blog',
       reqTime: req.requestTime
     });

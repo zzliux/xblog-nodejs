@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		热评文章
+	</div>
+	<div style="padding-top:0px" class="panel-body id-hot">
+		<ul data-range="monthly" data-num-items="5" class="ds-top-threads">
+		</ul>
+	</div>
+</div>
+{{# if(d.categories){ }}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			分类目录
+		</div>
+		<div class="panel-body">
+			<ul>
+			{{# for(var key in d.categories){ }}
+				<li><a href="/search/category/{{= key }}">{{= key }}</a>({{= d.categories[key] }})</li>
+			{{# }  }}
+			</ul>
+		</div>
+	</div>
+{{# } }}
+{{# if(d.tags){ }}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			标签
+		</div>
+		<div id="id-tags" class="panel-body">
+			{{# for(var key in d.tags){var size = d.tags[key]*2+12; }}
+				<a s="{{ size }}">{{ key }}</a>
+			{{# } }}
+		</div>
+	</div>
+{{# } }}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		友情链接
+	</div>
+	<div class="panel-body">
+		<a href="http://iimx.net" target="_blank">iiMX</a>&nbsp;<a href="http://www.itlife.top" target="_blank">贤德ACM队</a>&nbsp;<a href="http://blog.csdn.net/liyongfan152" target="_blank">Aelsy</a>&nbsp;<a href="http://www.changwei.me/" target="_blank">昌维的博客</a>&nbsp;<a href="http://www.360www.cn/" target="_blank">艾维网页设计导航</a>&nbsp;<a href="http://tangpeiliang.com/" target="_blank">唐佩良的博客</a>&nbsp;<a href="http://www.nulll.me/" target="_blank">滥情's Blog</a>&nbsp;<a href="http://blog.panshao.xyz/">panshao</a>
+	</div>
+</div>
