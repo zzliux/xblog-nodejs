@@ -15,7 +15,7 @@ router.get('/:cid', function(req, res, next) {
   if(req.session.user && req.session.user.id){
     flag = '';
   }
-  conn.query('SELECT `xblog_userinfo`.`uid`,`xblog_userinfo`.`name`,`xblog_userinfo`.`email`,`xblog_userinfo`.`password`,`xblog_userinfo`.`url`,`xblog_userinfo`.`registered`,`cid`,`title`,`content`,`tags`,`categories`,`date`,`status`,`commentstatus`,`priority` FROM `xblog_userinfo` INNER JOIN  `xblog_articles` ON `xblog_userinfo`.`uid` = `xblog_articles`.`uid` WHERE '+ flag + '`cid` = ?', [parseInt(req.params.cid)], function(err, rows, fields){
+  conn.query('SELECT `xblog_userinfo`.`uid`,`xblog_userinfo`.`name`,`xblog_userinfo`.`email`,`xblog_userinfo`.`password`,`xblog_userinfo`.`url`,`xblog_userinfo`.`registered`,`cid`,`title`,`content`,`tags`,`categories`,`date`,`status`,`commentstatus`,`priority` FROM `xblog_userinfo` INNER JOIN  `xblog_articles` ON `xblog_userinfo`.`uid` = `xblog_articles`.`uid` WHERE ' + flag + '`cid` = ?', [parseInt(req.params.cid)], function(err, rows, fields){
     if(err) {
       console.log(err.message);
       return res.status(500).send('err 500');
