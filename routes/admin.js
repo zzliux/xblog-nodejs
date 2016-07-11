@@ -1,4 +1,5 @@
 Date.prototype.format = require('../common/dateFormater');
+var siteConfig        = require('../config/site');
 var express           = require('express');
 var router            = express.Router();
 var multer            = require('multer');
@@ -21,6 +22,7 @@ router.get('/', function(req, res, next){
     res.redirect('/admin/login');
   }else{
     res.render('admin',{
+      siteConfig: siteConfig,
       reqTime: req.requestTime
     });
   }
@@ -30,7 +32,8 @@ router.get('/', function(req, res, next){
 /* 登录逻辑 */
 router.get('/login', function(req, res, next){
   res.render('admin-login', {
-    msg:'',
+    siteConfig: siteConfig,
+    msg: '',
     reqTime: req.requestTime
   });
 })
@@ -47,6 +50,7 @@ router.post('/login', function(req, res, next){
         res.redirect('/admin');
       }else{
         res.render('admin-login', {
+          siteConfig: siteConfig,
           msg:'用户名或密码错误',
           reqTime: req.requestTime
         })
@@ -70,6 +74,7 @@ router.get('/article', function(req, res, next){
         rows[i].status = (parseInt(rows[i].status)===1) ? '已发布' : '草稿';
       }
       res.render('admin-article',{
+        siteConfig: siteConfig,
         articles: rows,
         reqTime: req.requestTime
       });
@@ -86,6 +91,7 @@ router.get('/article/edit', function(req, res, next){
       conn.query('SELECT * FROM `xblog_articles` WHERE `cid` = ? AND `uid` = ? LIMIT 1',[parseInt(req.query.cid),parseInt(req.session.user.id)],function(err, rows, fields){
         if(rows.length > 0){
           res.render('admin-article-edit',{
+            siteConfig: siteConfig,
             article: rows[0],
             btn: true,
             reqTime: req.requestTime
@@ -98,6 +104,7 @@ router.get('/article/edit', function(req, res, next){
     }
     else{
       res.render('admin-article-edit',{
+        siteConfig: siteConfig,
         article:{
           cid:req.query.cid,
           content:'',
@@ -183,6 +190,7 @@ router.get('/upload', function(req, res, next){
         files[i] = '/images/thumb/' + files[i];
       }
       res.render('admin-upload',{
+        siteConfig: siteConfig,
         imgs: files,
         reqTime: req.requestTime
       });
@@ -240,6 +248,7 @@ router.get('/template',function(req, res, next){
     files.push(readFiles('public/stylesheets'));
     files.push(readFiles('public/javascripts'));
     res.render('admin-template',{
+      siteConfig: siteConfig,
       files: files,
       reqTime: req.requestTime
     });

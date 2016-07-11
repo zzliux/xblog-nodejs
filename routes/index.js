@@ -1,4 +1,5 @@
 Date.prototype.format = require('../common/dateFormater');
+var siteConfig        = require('../config/site');
 var express           = require('express');
 var router            = express.Router();
 var conn              = require('../common/dbConnection');
@@ -46,6 +47,7 @@ router.get('/', function(req, res, next) {
       res.render('index',{
         articles: rows1,
         siteTitle: 'zzliux\'s blog',
+        siteConfig: siteConfig,
         tags: tags,
         categories: categories,
         reqTime: req.requestTime

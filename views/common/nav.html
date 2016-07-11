@@ -1,15 +1,15 @@
 <header class="am-topbar zz-topbar">
 	<div class="am-container">
 		<h1 class="am-topbar-brand">
-			<a href="/">ZZLIUX'S BLOG</a>
+			<a href="/">{{= d.siteConfig.siteTitle }}</a>
 		</h1>
-
 		<button class="am-topbar-btn am-topbar-toggle am-btn am-btn-secondary am-btn-sm am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only"></span> <span class="am-icon-bars"></span></button>
 
 		<div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
 			<ul class="am-nav am-nav-pills am-topbar-nav">
-				<li class="am-dropdown"><a href="/article/9">ABOUT</a></li>
-				<li class="am-dropdown"><a href="/feed">RSS　<i class="fa fa-rss"></i></a></li>
+				{{# for(var i=0; i<d.siteConfig.navbarList.length; i++){ }}
+					<li class="am-dropdown"><a href="{{ d.siteConfig.navbarList[i].href }}">{{ d.siteConfig.navbarList[i].title }}</a></li>
+				{{# } }}
 			</ul>
 
 			<div class="am-topbar-right">

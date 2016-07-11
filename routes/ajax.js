@@ -1,4 +1,5 @@
 Date.prototype.format = require('../common/dateFormater');
+var siteConfig        = require('../config/site');
 var express           = require('express');
 var router            = express.Router();
 var conn              = require('../common/dbConnection');

@@ -1,4 +1,5 @@
 Date.prototype.format = require('../common/dateFormater');
+var siteConfig        = require('../config/site');
 var express           = require('express');
 var router            = express.Router();
 var conn              = require('../common/dbConnection');
@@ -7,7 +8,8 @@ var md                = require('marked');
 router.get('/:cid', function(req, res, next) {
   if(!req.params.cid.match(/\d+/)){
     return res.status(404).render('404',{
-      siteTitle : '404 | zzliux\'s blog',
+      siteConfig: siteConfig,
+      siteTitle: '404 | zzliux\'s blog',
       reqTime: req.requestTime
     });
   }
@@ -50,12 +52,14 @@ router.get('/:cid', function(req, res, next) {
 
       /* 渲染模版 */
       res.render('article',{
+        siteConfig: siteConfig,
         siteTitle: atc.title + ' | zzliux\'s blog',
         article: atc,
         reqTime: req.requestTime
       });
     }else{
       res.status(404).render('404',{
+        siteConfig: siteConfig,
         siteTitle : '404 | zzliux\'s blog',
         reqTime: req.requestTime
       });

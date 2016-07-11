@@ -1,4 +1,5 @@
 Date.prototype.format = require('../common/dateFormater');
+var siteConfig        = require('../config/site');
 var express           = require('express');
 var router            = express.Router();
 var conn              = require('../common/dbConnection');
@@ -24,12 +25,14 @@ router.get('/s',function(req, res, next){
     res.render('search',{
       articles: rows,
       searchKey: req.query.word,
+      siteConfig: siteConfig,
       siteTitle: req.query.word + ' | zzliux\'s blog',
       reqTime: req.requestTime
     });
    });
   }else{
     res.status(404).render('404',{
+      siteConfig: siteConfig,
       siteTitle : '404 | zzliux\'s blog',
       reqTime: req.requestTime
     });
@@ -55,6 +58,7 @@ router.get('/:method/:word',function(req, res, next){
     flag = true;
   }else{
     res.render('404',{
+      siteConfig: siteConfig,
       siteTitle: '404 | zzliux\'s blog',
       reqTime: req.requestTime
     });
@@ -73,6 +77,7 @@ router.get('/:method/:word',function(req, res, next){
         }
       }
       res.render('search',{
+        siteConfig: siteConfig,
         articles: rows,
         siteTitle: req.params.word + ' | zzliux\'s blog',
         reqTime: req.requestTime
