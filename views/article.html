@@ -26,33 +26,23 @@
 		</div>
 	</div>
 	<hr>
-		{{# if(d.article.status){ }}
-	<!-- 多说 -->
-	<div data-thread-key="{{ d.article.cid }}" data-title="{{= d.article.title }}" class="ds-thread"></div>
+	{{# if(d.article.status){ }}
+	<div id="SOHUCS" sid="{{ d.article.cid }}" ></div>
+	<script type="text/javascript">
+		(function(){
+		var appid = 'cysUyQqE3';
+		var conf = 'prod_6429a570f712f291b901d70e0312a216';
+		var width = window.innerWidth || document.documentElement.clientWidth;
+		if (width < 960) {window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();
+	</script>
 	{{# } }}
-</div>
+	</div>
 
 <footer>
 {{ include common/footer }}
 <script src="/plugins/highlightjs/highlight.pack.js"></script>
 <script src="/javascripts/article.js"></script>
 <script src="/javascripts/thumb2full.js"></script>
-{{# if(d.article.status){ }}
-<script>
-	/* 向百度自动推送 */
-	(function(){
-		var bp = document.createElement('script');
-		var curProtocol = window.location.protocol.split(':')[0];
-		if (curProtocol === 'https') {
-			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-		}else {
-			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-		}
-		var s = document.getElementsByTagName("script")[0];
-		s.parentNode.insertBefore(bp, s);
-	})();
-</script>
-{{# } }}
 </footer>
 </body>
 </html>
